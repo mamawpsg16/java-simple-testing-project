@@ -101,5 +101,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ClearCredentials", new Gson().toJson(credentialManager.getCredentials()));
         credentialManager.clearCredentials();
         Log.d("ClearCredentials", new Gson().toJson(credentialManager.getCredentials()));
+        Alert.set(this, "Sucess", "Credentials Cleared Sucessfully!");
     }
 }

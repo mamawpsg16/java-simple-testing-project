@@ -6,7 +6,7 @@ import android.content.Context;
 public class Alert {
     public static void set(Context context, String title, String message){
         new AlertDialog.Builder(context)
-                .setTitle("Error")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
