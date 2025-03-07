@@ -3,4 +3,12 @@
     <style name="HintTextStyle">
         <item name="android:textSize">12sp</item> <!-- Adjust size here -->
     </style>
+
+    <style name="Theme.MyApp" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize primary and secondary colors -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorSecondary">@color/teal_200</item>
+    </style>
+
 </resources>

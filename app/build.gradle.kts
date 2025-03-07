@@ -39,5 +39,12 @@ dependencies {
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
+    //GSON
     implementation(libs.gson)
+    // Room Database
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler) // Required for Java
+
+    // BCrypt for password hashing
+    implementation(libs.bcrypt)
 }

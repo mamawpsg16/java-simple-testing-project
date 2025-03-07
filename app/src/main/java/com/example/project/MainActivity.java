@@ -1,106 +1,89 @@
 package com.example.project;
 
-import com.google.gson.Gson;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.project.auth.AuthManager;
+import com.example.project.auth.SessionManager;
+import com.example.project.database.entities.User;
 public class MainActivity extends AppCompatActivity {
-    Map<String, Object> users = new HashMap<>();
     private EditText usernameField, passwordField;
-    private CredentialManager credentialManager;  // Declare as a field
+    private AuthManager authManager;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
+        sessionManager = new SessionManager(this); // Initialize SessionManager
+
+        if (sessionManager.isLoggedIn()) {
+            // User is already logged in, go to DashboardActivity
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+            finish(); // Prevent MainActivity from showing again
+        }
+
         setContentView(R.layout.activity_main);
 
-
-        // Initialize input fields
+        // Initialize UI components
         usernameField = findViewById(R.id.inputUsername);
         passwordField = findViewById(R.id.inputPassword);
 
-        credentialManager = new CredentialManager(this);
-        Log.d("MAIN", new Gson().toJson(credentialManager.getCredentials()));
+        // Initialize AuthManager
+        authManager = new AuthManager(this);
 
+        //Put Click Listener in Register Text View
         TextView textRegister = findViewById(R.id.textRegister);
-        textRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to RegisterActivity
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+        textRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
     }
 
+    /**
+     * Handles the login button click
+     */
     public void handleLogin(View view) {
         String username = usernameField.getText().toString().trim();
         String password = passwordField.getText().toString().trim();
 
-        // Validate inputs
         if (username.isEmpty() || password.isEmpty()) {
             showAlert("Username and password cannot be empty.");
             return;
         }
 
-        /* VALIDATE CREDENTIALS */
-        boolean isCredentialExists = credentialManager.checkCredentials(username, password);
-        if(!isCredentialExists){
-            showAlert("Credentials do not match!");
-            return;
-        }
+        authManager.login(username, password, new AuthManager.AuthCallback() {
+            @Override
+            public void onSuccess(User user) {
+                runOnUiThread(() -> {
+                    Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+            }
 
-        Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
-
-        // Clear input fields
-        emptyInputs();
-
-        Intent intent = new Intent(this, DashboardActivity.class);
-
-        startActivity(intent);
+            @Override
+            public void onFailure(String errorMessage) {
+                runOnUiThread(() -> showAlert(errorMessage));
+            }
+        });
     }
 
     private void showAlert(String message) {
-        Alert.set(this, "Error", message);
+        runOnUiThread(() -> Toast.makeText(this, message, Toast.LENGTH_LONG).show());
     }
 
-    //FOR MANUAL NOT USING SHARED PREFERENCES CHECKING OF CREDENTIALS
-    public boolean checkCredentials(String username, Object password) {
-        Object storedPassword = users.get(username);
-        return storedPassword != null && storedPassword.toString().equals(password.toString());
-    }
-
-    private void emptyInputs() {
-        usernameField.setText("");
-        passwordField.setText("");
-    }
-
-    public void clearCredentials(View view) { // Ensure it's public
-        CredentialManager credentialManager = new CredentialManager(this);
-        Log.d("ClearCredentials", new Gson().toJson(credentialManager.getCredentials()));
-        credentialManager.clearCredentials();
-        Log.d("ClearCredentials", new Gson().toJson(credentialManager.getCredentials()));
-        Alert.set(this, "Sucess", "Credentials Cleared Sucessfully!");
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        authManager.shutdown(); // Clean up executor service
     }
 }
