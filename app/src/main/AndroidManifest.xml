@@ -13,6 +13,49 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".alert_dialog.CustomDialogWithEditText"
+            android:exported="false" />
+        <activity
+            android:name=".alert_dialog.AlertDialogMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".spinner.CustomSpinner"
+            android:exported="false" />
+        <activity
+            android:name=".spinner.SpinnerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".array_adapter.ArrayAdapaterMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".fragment.TabSwipeFragmentMain"
+            android:exported="false" />
+        <activity
+            android:name=".fragment.SwipeFragmentMain"
+            android:exported="false" />
+        <activity
+            android:name=".fragment.FragmentMainExample"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerViewExample"
+            android:exported="false" />
+        <activity
+            android:name=".CustomToastActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PracticalExamplesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AutoResizeTextViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PassingBundleExample"
+            android:exported="false"
+            android:theme="@style/Theme.Project" />
+        <activity
             android:name=".user.EditViewActivity"
             android:exported="false" />
         <activity
@@ -23,6 +66,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +74,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BundleTestActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

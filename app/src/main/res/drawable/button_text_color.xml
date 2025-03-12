@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Hovered state (e.g., when using a mouse) -->
+
+    <!-- Pressed state (e.g., when clicked/tapped) -->
+    <item android:state_pressed="true" android:color="#3700B3" /> <!-- Dark blue when pressed -->
+
+    <!-- Default state -->
+    <item android:color="#6200EE"/> <!-- Default blue -->
+</selector>

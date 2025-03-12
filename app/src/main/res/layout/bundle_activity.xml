@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/btnPassBundles"
+        android:layout_width="275dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="268dp"
+        android:text="Pass Data Into Bundle"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNoBundle"
+        android:layout_width="277dp"
+        android:layout_height="92dp"
+        android:layout_marginBottom="220dp"
+        android:layout_marginTop="75dp"
+        android:text="Pass No Data/Empty BUNDLE"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPassBundles" />
+
+
+
+    <Button
+        android:id="@+id/btnCalculator"
+        android:onClick="openCalculator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textAllCaps="true"
+        android:text="@string/calculator_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnCameraIntent"
+        android:onClick="openCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:text="View Camera Intent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCalculator"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnRecyclerViewer"
+        android:onClick="openRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:text="View Recycler View"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCameraIntent"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnExamples"
+        android:onClick="openExamples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textAllCaps="true"
+        android:text="Examples"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnToast"
+        android:onClick="openCustomToastActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textAllCaps="true"
+        android:text="Open Toast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnExamples"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnFragment"
+        android:onClick="openFragmentActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textAllCaps="true"
+        android:text="Open Fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnToast"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:onClick="openSwipeFragmentActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swipe Fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnNoBundle" />
+
+    <Button
+        android:id="@+id/button3"
+        android:onClick="openTabSwipeFragmentActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tab Swipe Fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:onClick="openArrayAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Array Adapter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button3" />
+
+    <Button
+        android:id="@+id/button5"
+        android:onClick="openSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button4" />
+
+    <Button
+        android:id="@+id/button6"
+        android:onClick="openCustomSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Custom Spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button5" />
+
+    <Button
+        android:id="@+id/button7"
+        android:onClick="openAlertDialogActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Alert Dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button6" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="openCustomAlertDialog"
+        android:text="Open Custom Alert Dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

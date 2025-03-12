@@ -30,6 +30,7 @@ public class AuthManager {
                 callback.onFailure("Invalid username or password.");
             } else {
                 sessionManager.setLoggedIn(true); // Save login session
+                sessionManager.setLoggedInUsername(username);
                 callback.onSuccess(user);
             }
         });

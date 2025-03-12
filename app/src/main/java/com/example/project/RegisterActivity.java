@@ -119,9 +119,9 @@ public class RegisterActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 Toast.makeText(this, "Registration Successful, Redirecting to Login!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(this, MainActivity.class));
+                finish();
             });
         }).start(); // Start the background thread
-
 
         // Clear input fields
 //        emptyInputs();
